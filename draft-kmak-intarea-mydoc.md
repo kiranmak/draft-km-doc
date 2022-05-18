@@ -2,8 +2,8 @@
 ###
 # Internet-Draft Markdown Template
 #
-# Rename this file from draft-todo-yourname-protocol.md to get started.
-# Draft name format is "draft-<yourname>-<workgroup>-<name>.md".
+# Rename this file from draft-draft-kmak-intarea-mydoc.md to get started.
+# Draft name format is "draft-kmak-intarea-mydoc.md".
 #
 # For initial setup, you only need to edit the first block of fields.
 # Only "title" needs to be changed; delete "abbrev" if your title is short.
@@ -23,31 +23,30 @@ title: "TODO - Your title"
 abbrev: "TODO - Abbreviation"
 category: info
 
-docname: draft-todo-yourname-protocol-latest
-submissiontype: IETF  # also: "independent", "IAB", or "IRTF"
+docname: draft-kmak-intarea-mydoc-latest
+submissiontype: independent
 number:
-date:
-consensus: true
+date: 2022-05-19
+consensus: false
 v: 3
 area: AREA
 workgroup: WG Working Group
 keyword:
  - next generation
  - unicorn
- - sparkling distributed ledger
 venue:
   group: WG
   type: Working Group
   mail: WG@example.com
   arch: https://example.com/WG
-  github: USER/REPO
+  github: kiranmak/draft-kmak-my-doc
   latest: https://example.com/LATEST
 
 author:
  -
-    fullname: Your Name Here
-    organization: Your Organization Here
-    email: your.email@example.com
+    fullname: Kiran Makhijani
+    organization: Futurewei
+    email: kiran.ietf@gmail.com
 
 normative:
 
