@@ -28,16 +28,6 @@ jobs:
           echo
           echo "============================================================="
           echo "::set-output name=skip::true"
-        elif [ ! -f draft-todo-yourname-protocol.md ]; then
-          echo "============================================================="
-          echo "Skipping setup for an already-configured repository."
-          echo
-          echo "Delete .github/workflows/setup.yml to avoid running this action:"
-          echo
-          echo "    https://github.com/${{github.repository}}/delete/main/.github/workflows/setup.yml"
-          echo
-          echo "============================================================="
-          echo "::set-output name=skip::true"
         fi
 
     - name: "Git Config"
