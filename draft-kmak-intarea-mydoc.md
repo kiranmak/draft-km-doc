@@ -1,6 +1,6 @@
 ---
-title: "TODO - Your title"
-abbrev: "TODO - Abbreviation"
+title: "Let me try again"
+abbrev: "try"
 category: info
 
 docname: draft-kmak-intarea-mydoc-latest
