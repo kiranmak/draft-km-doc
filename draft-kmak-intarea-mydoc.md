@@ -9,18 +9,18 @@ number:
 date: 2022-05-19
 consensus: false
 v: 3
-area: AREA
-workgroup: WG Working Group
+area: "Internet"
+workgroup: "Internet Area Working Group"
 keyword:
  - next generation
  - unicorn
 venue:
-  group: WG
-  type: Working Group
-  mail: WG@example.com
-  arch: https://example.com/WG
-  github: kiranmak/draft-kmak-my-doc
-  latest: https://example.com/LATEST
+  group: "Internet Area Working Group"
+  type: "Working Group"
+  mail: "int-area@ietf.org"
+  arch: "https://mailarchive.ietf.org/arch/browse/int-area/"
+  github: "kiranmak/draft-km-doc"
+  latest: "https://kiranmak.github.io/draft-km-doc/draft-kmak-intarea-mydoc.html"
 
 author:
  -
