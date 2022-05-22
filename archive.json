@@ -1,0 +1,83 @@
+{
+  "magic": "E!vIA5L86J2I",
+  "timestamp": "2022-05-22T00:58:26.852687+00:00",
+  "repo": "kiranmak/draft-km-doc",
+  "labels": [
+    {
+      "name": "bug",
+      "description": "Something isn't working",
+      "color": "d73a4a"
+    },
+    {
+      "name": "documentation",
+      "description": "Improvements or additions to documentation",
+      "color": "0075ca"
+    },
+    {
+      "name": "duplicate",
+      "description": "This issue or pull request already exists",
+      "color": "cfd3d7"
+    },
+    {
+      "name": "enhancement",
+      "description": "New feature or request",
+      "color": "a2eeef"
+    },
+    {
+      "name": "help wanted",
+      "description": "Extra attention is needed",
+      "color": "008672"
+    },
+    {
+      "name": "good first issue",
+      "description": "Good for newcomers",
+      "color": "7057ff"
+    },
+    {
+      "name": "invalid",
+      "description": "This doesn't seem right",
+      "color": "e4e669"
+    },
+    {
+      "name": "question",
+      "description": "Further information is requested",
+      "color": "d876e3"
+    },
+    {
+      "name": "wontfix",
+      "description": "This will not be worked on",
+      "color": "ffffff"
+    }
+  ],
+  "issues": [],
+  "pulls": [
+    {
+      "number": 1,
+      "id": "PR_kwDOHW5trM44KnSL",
+      "title": "Fix setup",
+      "url": "https://github.com/kiranmak/draft-km-doc/pull/1",
+      "state": "MERGED",
+      "author": "martinthomson",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "This change should ensure that setup completes properly.  My apologies for breaking it.",
+      "createdAt": "2022-05-20T06:04:29Z",
+      "updatedAt": "2022-05-20T13:25:57Z",
+      "baseRepository": "kiranmak/draft-km-doc",
+      "baseRefName": "main",
+      "baseRefOid": "a2c8fec84747a94d25b6d0a7d0f84ae0b418b962",
+      "headRepository": "martinthomson/draft-km-doc",
+      "headRefName": "patch-1",
+      "headRefOid": "8c0cadbb0fd0107665e885b1af836e5c821bcf8a",
+      "closedAt": "2022-05-20T13:25:57Z",
+      "mergedAt": "2022-05-20T13:25:57Z",
+      "mergedBy": "kiranmak",
+      "mergeCommit": {
+        "oid": "a9356402ff965984db1a5debb9b3831a5ac20e13"
+      },
+      "comments": [],
+      "reviews": []
+    }
+  ]
+}
