@@ -1,9 +1,9 @@
 ---
-title: "Let me try again"
-abbrev: "try"
+title: "Networks for Operating Energy grids"
+abbrev: "energy grids"
 category: info
 
-docname: draft-kmak-intarea-mydoc-latest
+docname: draft-kmak-intarea-energygrids-latest
 submissiontype: independent
 number:
 date: 2022-05-19
@@ -20,7 +20,7 @@ venue:
   mail: "int-area@ietf.org"
   arch: "https://mailarchive.ietf.org/arch/browse/int-area/"
   github: "kiranmak/draft-km-doc"
-  latest: "https://kiranmak.github.io/draft-km-doc/draft-kmak-intarea-mydoc.html"
+  latest: "https://kiranmak.github.io/draft-km-energygrid/draft-kmak-intarea-energygrid.html"
 
 author:
  -
