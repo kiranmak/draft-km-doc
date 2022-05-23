@@ -3,7 +3,7 @@ title: "Networks for Operating Energy grids"
 abbrev: "energy grids"
 category: info
 
-docname: draft-kmak-intarea-energygrids-latest
+docname: draft-kmak-intarea-energygrid-latest
 submissiontype: independent
 number:
 date: 2022-05-19
