@@ -1,7 +1,7 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2022-05-22T00:58:26.852687+00:00",
-  "repo": "kiranmak/draft-km-doc",
+  "timestamp": "2022-05-24T01:03:46.901064+00:00",
+  "repo": "kiranmak/draft-km-energygrid",
   "labels": [
     {
       "name": "bug",
@@ -55,7 +55,7 @@
       "number": 1,
       "id": "PR_kwDOHW5trM44KnSL",
       "title": "Fix setup",
-      "url": "https://github.com/kiranmak/draft-km-doc/pull/1",
+      "url": "https://github.com/kiranmak/draft-km-energygrid/pull/1",
       "state": "MERGED",
       "author": "martinthomson",
       "authorAssociation": "CONTRIBUTOR",
@@ -64,7 +64,7 @@
       "body": "This change should ensure that setup completes properly.  My apologies for breaking it.",
       "createdAt": "2022-05-20T06:04:29Z",
       "updatedAt": "2022-05-20T13:25:57Z",
-      "baseRepository": "kiranmak/draft-km-doc",
+      "baseRepository": "kiranmak/draft-km-energygrid",
       "baseRefName": "main",
       "baseRefOid": "a2c8fec84747a94d25b6d0a7d0f84ae0b418b962",
       "headRepository": "martinthomson/draft-km-doc",
