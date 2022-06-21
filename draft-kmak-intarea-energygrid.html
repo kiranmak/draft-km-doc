@@ -7,8 +7,8 @@
 <title>Networks for Operating Energy grids</title>
 <meta content="Kiran Makhijani" name="author">
 <meta content="
-       This document describes the Operations and Control Network (OCN) scenario emerging from the modern or smart energy grid applications. These scenarios are derived to highlighting different behavior than the traditional networking leading to new requirements.
-Traditional energy grids been a one way power distribution system, manged centrally. However, new sources of power generation and provisioning for efficient use of energy, requires 2-way communication between different the consuming and consuming entities in the power grid networks. 
+       This document describes communications specific scenarios emerging from the advances in the energy grid applications. These scenarios are derived to highlight that their behavior differs from the traditional best-effort networks and inter-networking paradigms, thereby leading to new requirements.
+Traditional energy grids have been a one way power distribution system, managed centrally. However, new sources of power generation and provisioning for efficient use of energy, requires two-way communication and coordination between different power generating and consuming entities in the power grid networks. 
     " name="description">
 <meta content="xml2rfc 3.12.10" name="generator">
 <meta content="next generation" name="keyword">
@@ -1063,8 +1063,8 @@ svg :is([stroke="fill"], [fill^="#fff"]) {
 <h1 id="title">Networks for Operating Energy grids</h1>
 <section id="section-abstract">
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
-<p id="section-abstract-1">This document describes the Operations and Control Network (OCN) scenario emerging from the modern or smart energy grid applications. These scenarios are derived to highlighting different behavior than the traditional networking leading to new requirements.
-Traditional energy grids been a one way power distribution system, manged centrally. However, new sources of power generation and provisioning for efficient use of energy, requires 2-way communication between different the consuming and consuming entities in the power grid networks.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
+<p id="section-abstract-1">This document describes communications specific scenarios emerging from the advances in the energy grid applications. These scenarios are derived to highlight that their behavior differs from the traditional best-effort networks and inter-networking paradigms, thereby leading to new requirements.
+Traditional energy grids have been a one way power distribution system, managed centrally. However, new sources of power generation and provisioning for efficient use of energy, requires two-way communication and coordination between different power generating and consuming entities in the power grid networks.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 </section>
 <section class="note rfcEditorRemove" id="section-note.1">
       <h2 id="name-about-this-document">
@@ -1161,7 +1161,7 @@ Traditional energy grids been a one way power distribution system, manged centra
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4">
-            <p id="section-toc.1-1.4.1"><a href="#section-4" class="xref">4</a>.  <a href="#name-new-power-grid-decentraliza" class="xref">New Power grid Decentralization Scenarios</a></p>
+            <p id="section-toc.1-1.4.1"><a href="#section-4" class="xref">4</a>.  <a href="#name-new-power-grid-scenarios" class="xref">New Power grid Scenarios</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.1">
                 <p id="section-toc.1-1.4.2.1.1"><a href="#section-4.1" class="xref">4.1</a>.  <a href="#name-connecting-distributed-ener" class="xref">Connecting Distributed Energy Resources</a></p>
@@ -1207,15 +1207,7 @@ Traditional energy grids been a one way power distribution system, manged centra
             <p id="section-toc.1-1.7.1"><a href="#section-7" class="xref">7</a>.  <a href="#name-iana-considerations" class="xref">IANA Considerations</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8">
-            <p id="section-toc.1-1.8.1"><a href="#section-8" class="xref">8</a>.  <a href="#name-references" class="xref">References</a></p>
-<ul class="compact toc ulBare ulEmpty">
-<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.1">
-                <p id="section-toc.1-1.8.2.1.1"><a href="#section-8.1" class="xref">8.1</a>.  <a href="#name-normative-references" class="xref">Normative References</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.2">
-                <p id="section-toc.1-1.8.2.2.1"><a href="#section-8.2" class="xref">8.2</a>.  <a href="#name-informative-references" class="xref">Informative References</a></p>
-</li>
-            </ul>
+            <p id="section-toc.1-1.8.1"><a href="#section-8" class="xref">8</a>.  <a href="#name-informative-references" class="xref">Informative References</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9">
             <p id="section-toc.1-1.9.1"><a href="#appendix-A" class="xref"></a><a href="#name-acknowledgments" class="xref">Acknowledgments</a></p>
@@ -1232,19 +1224,28 @@ Traditional energy grids been a one way power distribution system, manged centra
       <h2 id="name-introduction">
 <a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
       </h2>
-<p id="section-1-1">The traditional power grids are a single-soruce centralized power distribution network. Power grid infrastructure involves a large power plant
-generator and that power to be distributed over large geographical areas using transmission lines to the utility customer.<a href="#section-1-1" class="pilcrow">¶</a></p>
-<p id="section-1-2">Essentially, the energy grid network is a
-large scale control system which is evolving with a goal of efficiently utilizing every unit of
+<p id="section-1-1">The traditional power grids are a single-source centralized power distribution network. Power grid infrastructure involves a large power plant
+generator and from there on that power to be distributed over large geographical areas using transmission lines to the utility customer.<a href="#section-1-1" class="pilcrow">¶</a></p>
+<p id="section-1-2">Essentially, the energy grid network is a large scale control system
+which is evolving with a goal of efficiently utilizing every unit of
 power generated.<a href="#section-1-2" class="pilcrow">¶</a></p>
-<p id="section-1-3">Although demand for energy continues to grow, it is difficult to setup and expand
-energy grids and transmission lines. However, several cases arise when power stations will need to
-operate at full capacity or re-distribute energy load across different customer side substations. Different types of surge in power consumption must be done
-dynamically with the help of automated controls and tools.<a href="#section-1-3" class="pilcrow">¶</a></p>
-<p id="section-1-4">Secondly, infrastructure continues to evolve to connect new sources of energy into the grid. This also requires fine-grained control of switching power-sources based on pricing and on-demand parameters.<a href="#section-1-4" class="pilcrow">¶</a></p>
-<p id="section-1-5">Electrical grids and substations present with difficult operating conditions for plant operators due to hazards related to high voltages and current exposure (???) when faults occur.
-This document provides role of communication systems to support automation and remote operation scenarios in the electric power grids to facilitate above mentioned challenges.<a href="#section-1-5" class="pilcrow">¶</a></p>
-<p id="section-1-6">This document provides a background of the power-grid architecture and discusses new scenarios requiring closer integration with the communication technologies.<a href="#section-1-6" class="pilcrow">¶</a></p>
+<p id="section-1-3">The demand for energy will continue to grow; at the same time, it is
+difficult to expand resources in the energy grids and the transmission lines.
+There is always a possibility that when the demand for the energy goes very high, the power station will have to operate at full capacity or will
+re-distribute energy load from one customer-side substation to the other. Such
+power surges are not always predictable, therefore, the consumption must be
+done dynamically on-demand with the help of automated controls and tools.<a href="#section-1-3" class="pilcrow">¶</a></p>
+<p id="section-1-4">Secondly, the energy grid infrastructure continues to evolve to connect
+new sources of energy into the grid. This also requires finer granularity
+of control to switch power-sources at the right time and without disruption based on pricing and on-demand parameters. Such type of actions should not have adverse effect on the stability of the networks.<a href="#section-1-4" class="pilcrow">¶</a></p>
+<p id="section-1-5">Electrical grids and substations present difficult operating conditions
+for plant operators due to the hazards related to high voltages and current
+faults occur, requiring for safety of operations.<a href="#section-1-5" class="pilcrow">¶</a></p>
+<p id="section-1-6">With the above mentioned challenges, this document provides role of
+communication systems to support automation and remote operation scenarios
+in the electric power grids.<a href="#section-1-6" class="pilcrow">¶</a></p>
+<p id="section-1-7">This document also provides a background of the power-grid architecture to add
+more context to the discussions on scenarios requiring closer integration with the communication technologies.<a href="#section-1-7" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="conventions-and-definitions">
@@ -1253,17 +1254,17 @@ This document provides role of communication systems to support automation and r
 <a href="#section-2" class="section-number selfRef">2. </a><a href="#name-conventions-and-definitions" class="section-name selfRef">Conventions and Definitions</a>
       </h2>
 <span class="break"></span><dl class="dlParallel" id="section-2-1">
-        <dt id="section-2-1.1">Protective Relays</dt>
+        <dt id="section-2-1.1">Protective Relays:</dt>
         <dd style="margin-left: 1.5em" id="section-2-1.2">
           <p id="section-2-1.2.1">are used in the power grids to detect defects and abnormal conditions in lines or apparatus to initiate appropriate control circuit action.<a href="#section-2-1.2.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-2-1.3">Intelligent Electronic Devices (IEDs)</dt>
+<dt id="section-2-1.3">Intelligent Electronic Devices (IEDs):</dt>
         <dd style="margin-left: 1.5em" id="section-2-1.4">
           <p id="section-2-1.4.1">are microprocessor-based devices in the power systems that transmit and receive data or control external device such as microprocessor-based voltage regulators, protection relays, circuit breaker controllers, etc. that can communicate with other devices in the network.<a href="#section-2-1.4.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-2-1.5">Distributed Energy Resources (DERs)</dt>
+<dt id="section-2-1.5">Distributed Energy Resources (DERs):</dt>
         <dd style="margin-left: 1.5em" id="section-2-1.6">
           <p id="section-2-1.6.1">Distributed energy resources are small, modular, energy generation
 and storage technologies that provide electric capacity or energy
@@ -1277,13 +1278,21 @@ and control devices for efficient operation of multiple components
 of power management.<a href="#section-2-1.6.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-2-1.7">Merging Unit (MU)</dt>
+<dt id="section-2-1.7">Merging Unit (MU):</dt>
         <dd style="margin-left: 1.5em" id="section-2-1.8">
           <p id="section-2-1.8.1">is used to convert voltage and current readings
 from potential and current transformers, respectively, into digital data and publish them as Sampled measured values.<a href="#section-2-1.8.1" class="pilcrow">¶</a></p>
 </dd>
       <dd class="break"></dd>
 </dl>
+<ul class="normal">
+<li class="normal" id="section-2-2.1">GOOSE: Generic Object Oriented Substation Events<a href="#section-2-2.1" class="pilcrow">¶</a>
+</li>
+        <li class="normal" id="section-2-2.2">MMS: Manufacturing Message Specification<a href="#section-2-2.2" class="pilcrow">¶</a>
+</li>
+        <li class="normal" id="section-2-2.3">SMV: Sampled Measurement Value<a href="#section-2-2.3" class="pilcrow">¶</a>
+</li>
+      </ul>
 </section>
 </div>
 <div id="background">
@@ -1306,7 +1315,7 @@ from potential and current transformers, respectively, into digital data and pub
                                        /\
                                       |  |
                transmission           +--+
-                       /  distribution  |
+                       /\  distribution |
                       /T\    +--+       |
   +----+      +---+    |     |  |-------+
   |    |------|   |----|-----+--+
@@ -1327,7 +1336,12 @@ from potential and current transformers, respectively, into digital data and pub
 <a href="#name-power-grid-architecture" class="selfRef">Power grid architecture</a>
           </figcaption></figure>
 </div>
-<p id="section-3.1-3">The entire grid relies on traditional OT. It requires SCADA or similar setup to monitor and control the voltage and power in each substation associated with the transmission, distribution and customer site substations. Several of these functions are identical focusing on protection and distribution of electric current flowing through.<a href="#section-3.1-3" class="pilcrow">¶</a></p>
+<p id="section-3.1-3">The entire grid relies on traditional operational technology (OT) functions and
+communications. It requires SCADA or similar setup to monitor and control
+the voltage and power in each substation associated with the transmission,
+distribution and customer sites . Several of these functions are
+identical focusing on the protection and distribution of electric current
+flowing through.<a href="#section-3.1-3" class="pilcrow">¶</a></p>
 <p id="section-3.1-4">Time synchronization <span>[<a href="#SYNC" class="xref">SYNC</a>]</span> is an important aspect of power grids since accurate timing is used to detect when and where malfunctions or disruption in power distribution occurred. Time synchronized electric signals guarantee that current flowing through lines is in phase (ref and use case??)<a href="#section-3.1-4" class="pilcrow">¶</a></p>
 <p id="section-3.1-5">TODO: Add more on limitations.<a href="#section-3.1-5" class="pilcrow">¶</a></p>
 </section>
@@ -1339,16 +1353,16 @@ from potential and current transformers, respectively, into digital data and pub
         </h3>
 <p id="section-3.2-1">Communications in electric power systems are at two levels.
     &gt;1. Intra-substation communications: To facilitate connectivity
-        and control functions through substation automation.
+        and control functions relating to substation automation.
     &gt;2. Inter-substation communications: To facilitate connectivity
-        for synchronization, load redistribution and topology
+        for phase synchronization, load (re-)distribution and topology
         related functions.<a href="#section-3.2-1" class="pilcrow">¶</a></p>
 <div id="subsystem-automation-system-sas">
 <section id="section-3.2.1">
           <h4 id="name-subsystem-automation-system">
 <a href="#section-3.2.1" class="section-number selfRef">3.2.1. </a><a href="#name-subsystem-automation-system" class="section-name selfRef">Subsystem Automation System (SAS)</a>
           </h4>
-<p id="section-3.2.1-1">The reference design used below is based on IEC 61850 process bus based T1-1 substation automation reference case study <span>[<a href="#RT-MSGS" class="xref">RT-MSGS</a>]</span>.<a href="#section-3.2.1-1" class="pilcrow">¶</a></p>
+<p id="section-3.2.1-1">The reference design used below in <a href="#sas" class="xref">Figure 2</a> is based on IEC 61850 process bus. It is part of the T1-1 substation automation reference case study <span>[<a href="#RT-MSGS" class="xref">RT-MSGS</a>]</span>.<a href="#section-3.2.1-1" class="pilcrow">¶</a></p>
 <span id="name-substation-automation-syste"></span><div id="sas">
 <figure id="figure-2">
             <div class="alignLeft art-text artwork" id="section-3.2.1-2.1">
@@ -1392,30 +1406,42 @@ from potential and current transformers, respectively, into digital data and pub
           <h4 id="name-protocols">
 <a href="#section-3.2.2" class="section-number selfRef">3.2.2. </a><a href="#name-protocols" class="section-name selfRef">Protocols</a>
           </h4>
-<p id="section-3.2.2-1">The communication requirements are documented in IEC 61850: Part 5 standard (since this requires purchase of standard, the reference is not added to the document. Instead <span>[<a href="#RT-MSGS" class="xref">RT-MSGS</a>]</span> provides an indirect reference is used).<a href="#section-3.2.2-1" class="pilcrow">¶</a></p>
-<p id="section-3.2.2-2">Power grid systems use different types of messages listed in <span>[<a href="#RT-MSGS" class="xref">RT-MSGS</a>]</span> below.<a href="#section-3.2.2-2" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="section-3.2.2-3.1">IEC GOOSE protocol is an event-driven protocol designed to exchange messages between the IEDs
-over Ethernet. It supports periodic and event based messages.
-Event-based messages are used for reporting errors and are sent in
-bursts to compensate for any packet loss (since the protocol is
-publisher/subscriber based). The <a href="#grid-proto" class="xref">Figure 3</a> show all the protocol interfaces.<a href="#section-3.2.2-3.1" class="pilcrow">¶</a>
-</li>
-            <li class="normal" id="section-3.2.2-3.2">Sampled Measured values (SV) protocol is also over Ethernet to connect
-the other side of IEDs interact over the process bus to collect sampled values (SV) from the devices. The SV interfaces between the IEDs and MUs.
-It is used to carry digital values of voltage and current and used
-for control and monitoring applications. SMV messages are
-broadcast messages and an svID field is utilized to distinguish and classify them.<a href="#section-3.2.2-3.2" class="pilcrow">¶</a>
-</li>
-            <li class="normal" id="section-3.2.2-3.3">MMS protocol is an application client/server protocol designed for
-interoperability between different device manufacturers.<a href="#section-3.2.2-3.3" class="pilcrow">¶</a>
+<p id="section-3.2.2-1">The communication requirements are documented in IEC 61850: Part 5 standard and an overview of the communication architecture and messages are described in the <span>[<a href="#IEC-SPEC" class="xref">IEC-SPEC</a>]</span> paper.<a href="#section-3.2.2-1" class="pilcrow">¶</a></p>
+<ul class="normal ulEmpty">
+<li class="normal ulEmpty" id="section-3.2.2-2.1">
+              <p id="section-3.2.2-2.1.1">Note: since this requires purchase of the copy of the standard, reference
+ to this document is not added. Instead <span>[<a href="#IEC-SPEC" class="xref">IEC-SPEC</a>]</span> and <span>[<a href="#RT-MSGS" class="xref">RT-MSGS</a>]</span> provide
+ indirect references with sufficient context.<a href="#section-3.2.2-2.1.1" class="pilcrow">¶</a></p>
 </li>
           </ul>
-<p id="section-3.2.2-4">One of the problem with Ethernet based payloads on process and station bus
-is that the Ethernet is a broadcast medium and without appropriate address validation (or lack of it) can lead to substation susceptible to flooding attacks. see <span>[<a href="#SMV-ATTACKS" class="xref">SMV-ATTACKS</a>]</span> for more vulnerabilities in SMV and GOOSE protocols.<a href="#section-3.2.2-4" class="pilcrow">¶</a></p>
+<p id="section-3.2.2-3">Power grid systems use different types of messages <span>[<a href="#RT-MSGS" class="xref">RT-MSGS</a>]</span> as below.<a href="#section-3.2.2-3" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-3.2.2-4.1">IEC GOOSE is an event-driven protocol designed to exchange messages
+between the IEDs over the Ethernet. It supports both periodic and event
+based messages.
+Event-based messages are used for reporting errors and are sent in
+bursts to compensate for any packet loss (since the protocol is
+publisher/subscriber based). The <a href="#grid-proto" class="xref">Figure 3</a> show all the
+protocol interfaces.<a href="#section-3.2.2-4.1" class="pilcrow">¶</a>
+</li>
+            <li class="normal" id="section-3.2.2-4.2">Sampled Measured Values (SV) protocol is also over Ethernet to connect
+to the other side of IEDs to interact over the process bus.
+Using this protocols  collect sampled values (SV) from the devices.
+The SV interfaces between the IEDs and MUs.
+An MU will convert analog readings to digital, then use SMV format to
+carry digital values of voltage and current for control and monitoring
+applications. SMV messages are broadcast messages and an svID
+field is utilized to distinguish and classify them.<a href="#section-3.2.2-4.2" class="pilcrow">¶</a>
+</li>
+            <li class="normal" id="section-3.2.2-4.3">MMS protocol is an application client/server protocol designed for
+interoperability between different device manufacturers.<a href="#section-3.2.2-4.3" class="pilcrow">¶</a>
+</li>
+          </ul>
+<p id="section-3.2.2-5">One of the concerns with the Ethernet based payloads on process and station bus
+is that the Ethernet is a broadcast medium and without appropriate address validation (or lack of it) substation may be susceptible to flooding attacks. See <span>[<a href="#SMV-ATTACKS" class="xref">SMV-ATTACKS</a>]</span> for more vulnerabilities in SMV and GOOSE protocols.<a href="#section-3.2.2-5" class="pilcrow">¶</a></p>
 <span id="name-protocols-used-in-energy-gr"></span><div id="grid-proto">
 <figure id="figure-3">
-            <div id="section-3.2.2-5.1">
+            <div id="section-3.2.2-6.1">
 <pre class="lang-~ sourcecode">
    +------+          +---+
    |SCADA |  MMS     |RTU|
@@ -1467,33 +1493,45 @@ is that the Ethernet is a broadcast medium and without appropriate address valid
         <h3 id="name-other-work">
 <a href="#section-3.3" class="section-number selfRef">3.3. </a><a href="#name-other-work" class="section-name selfRef">Other work</a>
         </h3>
-<p id="section-3.3-1">Within the IETF technologies, some work on smart-grid is being done.
-<span>[<a href="#RFC6272" class="xref">RFC6272</a>]</span> provides guidance for smart-grids to use existing IETF protocols.<a href="#section-3.3-1" class="pilcrow">¶</a></p>
-<p id="section-3.3-2"><span>[<a href="#I-D.6lo-plc" class="xref">I-D.6lo-plc</a>]</span> only relates to metering infrastructure and disucsses how IPv6 packets are transported over constrained PLC networks, such as ITU-T G.9903, IEEE 1901.1 and IEEE 1901.2.<a href="#section-3.3-2" class="pilcrow">¶</a></p>
-</section>
-</div>
-</section>
-</div>
-<div id="new-power-grid-decentralization-scenarios">
-<section id="section-4">
-      <h2 id="name-new-power-grid-decentraliza">
-<a href="#section-4" class="section-number selfRef">4. </a><a href="#name-new-power-grid-decentraliza" class="section-name selfRef">New Power grid Decentralization Scenarios</a>
-      </h2>
-<p id="section-4-1">This section describes a broad view of use cases requiring different perspective related to the communication aspects of power-grid systems.<a href="#section-4-1" class="pilcrow">¶</a></p>
-<p id="section-4-2">Smart grid innovation is leading to use of communication and digital
-technologies to perform different power distribution functions.
-We cover 3 scenarios:<a href="#section-4-2" class="pilcrow">¶</a></p>
 <ul class="normal ulEmpty">
-<li class="normal ulEmpty" id="section-4-3.1">
-          <ol start="1" type="1" class="normal type-1" id="section-4-3.1.1">
-<li id="section-4-3.1.1.1">Connecting Distributed Energy Resources - decentralized energy distribution management of power and load distribution/balancing from different sources to improve overall performance of the grid.<a href="#section-4-3.1.1.1" class="pilcrow">¶</a>
+<li class="normal ulEmpty" id="section-3.3-1.1">
+            <p id="section-3.3-1.1.1">Note: This section should be moved.<a href="#section-3.3-1.1.1" class="pilcrow">¶</a></p>
 </li>
-            <li id="section-4-3.1.1.2">Substation Automation Systems - Remote operation and
-and monitoring of SAS to reduce delays due to technician having to fix
-problems on-site. also to improve the safety of the technicians.<a href="#section-4-3.1.1.2" class="pilcrow">¶</a>
+        </ul>
+<p id="section-3.3-2">Within the IETF technologies, some work on smart-grid is being done.
+<span>[<a href="#RFC6272" class="xref">RFC6272</a>]</span> provides guidance for smart-grids to use existing IETF protocols.<a href="#section-3.3-2" class="pilcrow">¶</a></p>
+<p id="section-3.3-3">Forwarding IPv6 packets over PLC interfaces is described in
+<span>[<a href="#I-D.ietf-6lo-plc" class="xref">I-D.ietf-6lo-plc</a>]</span>. It only relates to advanced metering infrastructure and disucsses how IPv6 packets are transported over constrained PLC networks, such as ITU-T G.9903, IEEE 1901.1 and IEEE 1901.2.<a href="#section-3.3-3" class="pilcrow">¶</a></p>
+<p id="section-3.3-4">There are  additional functions and characteristics necessary as well such as
+those related to latency guarantees, resiliency and reliability.<a href="#section-3.3-4" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="new-power-grid-scenarios">
+<section id="section-4">
+      <h2 id="name-new-power-grid-scenarios">
+<a href="#section-4" class="section-number selfRef">4. </a><a href="#name-new-power-grid-scenarios" class="section-name selfRef">New Power grid Scenarios</a>
+      </h2>
+<p id="section-4-1">This section describes a broad view of the use cases requiring
+different perspective related to the communication in power-grid systems.<a href="#section-4-1" class="pilcrow">¶</a></p>
+<p id="section-4-2">Smart grids are specifically defined as technologies that rely on
+connectivity to leverage and digital technologies to perform different
+power distribution functions.<a href="#section-4-2" class="pilcrow">¶</a></p>
+<p id="section-4-3">We cover 3 scenarios:<a href="#section-4-3" class="pilcrow">¶</a></p>
+<ul class="normal ulEmpty">
+<li class="normal ulEmpty" id="section-4-4.1">
+          <ol start="1" type="1" class="normal type-1" id="section-4-4.1.1">
+<li id="section-4-4.1.1.1">Coordination of Distributed Energy Resources - decentralized energy
+ distribution management of power and load distribution/balancing from
+ different sources to improve overall performance of the grid.<a href="#section-4-4.1.1.1" class="pilcrow">¶</a>
 </li>
-            <li id="section-4-3.1.1.3">Advance metering infrastructure to address customer side peak demands
-and metering based on different sources of energy.<a href="#section-4-3.1.1.3" class="pilcrow">¶</a>
+            <li id="section-4-4.1.1.2">Substation Automation Systems - Remote operation and monitoring of
+ substations to reduce delays due to technician having to fix
+ problems on-site. Also to improve the safety of the technicians.<a href="#section-4-4.1.1.2" class="pilcrow">¶</a>
+</li>
+            <li id="section-4-4.1.1.3">Advance Metering Infrastructure  - to address customer side peak demands
+ and metering based on different sources of energy.<a href="#section-4-4.1.1.3" class="pilcrow">¶</a>
 </li>
           </ol>
 </li>
@@ -1516,23 +1554,17 @@ service interruption happens from main power source.<a href="#section-4.1-3.1" c
 decreasing consumption from main supplier.<a href="#section-4.1-3.2" class="pilcrow">¶</a>
 </li>
         </ul>
+<p id="section-4.1-4">IEEE-1547-2018 describes connection and inter-operability interface between
+bulk power utility and a DER. It is a technology agnostic specification,
+however, mandates a communication interface to exchange operations, capabilities and requirements between EPS and DER.<a href="#section-4.1-4" class="pilcrow">¶</a></p>
+<p id="section-4.1-5">TODO: add examples.<a href="#section-4.1-5" class="pilcrow">¶</a></p>
 <div id="requirements-and-challenges">
 <section id="section-4.1.1">
           <h4 id="name-requirements-and-challenges">
 <a href="#section-4.1.1" class="section-number selfRef">4.1.1. </a><a href="#name-requirements-and-challenges" class="section-name selfRef">Requirements and Challenges</a>
           </h4>
-<p id="section-4.1.1-1">The communication between DER to end-units (inverters, batteries) is of type
-operations and control functions. i.e. a controlling entity will control
-DER in local geographies and end-units on customer premises.
-It executes commands that will cause switching of power-source in
-either direction and regularly read sensors.<a href="#section-4.1.1-1" class="pilcrow">¶</a></p>
-<p id="section-4.1.1-2">Connecting different types of DERs to the grids leads to a large-scale single deplyoment. Some of the challenges arising due to this are:<a href="#section-4.1.1-2" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="section-4.1.1-3.1">A partial knowledge about any energy resource or requirement may result in the instability of the voltage profile.<a href="#section-4.1.1-3.1" class="pilcrow">¶</a>
-</li>
-            <li class="normal" id="section-4.1.1-3.2">There is a need to redesign systems for 2 way communications in which different DERs will let smrt-grid operator know about available power and its demand requirement<a href="#section-4.1.1-3.2" class="pilcrow">¶</a>
-</li>
-          </ul>
+<p id="section-4.1.1-1">Connecting different types of DERs to the grids leads to a large-scale single deplyoment requiring explicit resource co-ordination.<a href="#section-4.1.1-1" class="pilcrow">¶</a></p>
+<p id="section-4.1.1-2">TODO:<a href="#section-4.1.1-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -1673,11 +1705,14 @@ a wide-area networks.<a href="#section-5-2.1.1.3" class="pilcrow">¶</a>
         <h3 id="name-smart-energy-grids">
 <a href="#section-5.2" class="section-number selfRef">5.2. </a><a href="#name-smart-energy-grids" class="section-name selfRef">Smart Energy Grids</a>
         </h3>
-<p id="section-5.2-1">Support for smart-grids is necessary to interconnect different sources of
+<p id="section-5.2-1">Smart-grids are a network of all the components in production and consumption
+of powers. It is necessary to interconnect different sources of
 energy, have a system level view of where peak-demand or consumption
 is changing, where faults are occurring and how energy can be used efficiently overall.<a href="#section-5.2-1" class="pilcrow">¶</a></p>
-<p id="section-5.2-2">This requires finer granularity of monitoring, control, and data acquisition of the electricity network which will extend down to the
-distribution pole-top transformer and perhaps even to individual customers, either through the substation communication network, by means of a
+<p id="section-5.2-2">This requires finer granularity of monitoring, control, and data
+acquisition of the electricity network which will extend down to the
+distribution pole-top transformer. It can also extend to individual customers,
+either through the substation communication network, by means of a
 separate feeder communication network (chapter 22, <span>[<a href="#POWER-SUBS" class="xref">POWER-SUBS</a>]</span>).<a href="#section-5.2-2" class="pilcrow">¶</a></p>
 <div id="key-performance-parameters">
 <section id="section-5.2.1">
@@ -1695,7 +1730,8 @@ separate feeder communication network (chapter 22, <span>[<a href="#POWER-SUBS" 
 <section id="section-5.2.2">
           <h4 id="name-requirements-2">
 <a href="#section-5.2.2" class="section-number selfRef">5.2.2. </a><a href="#name-requirements-2" class="section-name selfRef">Requirements</a>
-        </h4>
+          </h4>
+<p id="section-5.2.2-1">TODO<a href="#section-5.2.2-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -1719,55 +1755,43 @@ separate feeder communication network (chapter 22, <span>[<a href="#POWER-SUBS" 
 </section>
 </div>
 <section id="section-8">
-      <h2 id="name-references">
-<a href="#section-8" class="section-number selfRef">8. </a><a href="#name-references" class="section-name selfRef">References</a>
+      <h2 id="name-informative-references">
+<a href="#section-8" class="section-number selfRef">8. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
       </h2>
-<section id="section-8.1">
-        <h3 id="name-normative-references">
-<a href="#section-8.1" class="section-number selfRef">8.1. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
-        </h3>
 <dl class="references">
+<dt id="FED-ENERGY-MGMT">[FED-ENERGY-MGMT]</dt>
+      <dd>
+<span class="refTitle">"Using Distributed Energy Resources, A how-to Guide for Federal Facility Managers."</span>, <span>n.d.</span>, <span>&lt;<a href="https://www.nrel.gov/docs/fy02osti/31570.pdf">https://www.nrel.gov/docs/fy02osti/31570.pdf</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="I-D.ietf-6lo-plc">[I-D.ietf-6lo-plc]</dt>
+      <dd>
+<span class="refAuthor">Hou, J.</span>, <span class="refAuthor">Liu, B.</span>, <span class="refAuthor">Hong, Y.</span>, <span class="refAuthor">Tang, X.</span>, and <span class="refAuthor">C. E. Perkins</span>, <span class="refTitle">"Transmission of IPv6 Packets over PLC Networks"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-6lo-plc-11</span>, <time datetime="2022-05-18" class="refDate">18 May 2022</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-6lo-plc-11">https://datatracker.ietf.org/doc/html/draft-ietf-6lo-plc-11</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="IEC-SPEC">[IEC-SPEC]</dt>
+      <dd>
+<span class="refAuthor">Baigent, D.</span> and <span class="refAuthor">M. Adamiak</span>, <span class="refTitle">"IEC 61850 Communication Networks and Systems In Substations: An Overview for Users"</span>, <time datetime="2009" class="refDate">2009</time>, <span>&lt;<a href="https://www.gegridsolutions.com/multilin/journals/issues/spring09/iec61850.pdf">https://www.gegridsolutions.com/multilin/journals/issues/spring09/iec61850.pdf</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="POWER-SUBS">[POWER-SUBS]</dt>
+      <dd>
+<span class="refAuthor">McDonald, J. D.</span>, <span class="refTitle">"3rd Edition, Electric Power Substations Engineering"</span>, <time datetime="2012" class="refDate">2012</time>. </dd>
+<dd class="break"></dd>
 <dt id="RFC6272">[RFC6272]</dt>
       <dd>
 <span class="refAuthor">Baker, F.</span> and <span class="refAuthor">D. Meyer</span>, <span class="refTitle">"Internet Protocols for the Smart Grid"</span>, <span class="seriesInfo">RFC 6272</span>, <span class="seriesInfo">DOI 10.17487/RFC6272</span>, <time datetime="2011-06" class="refDate">June 2011</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc6272">https://www.rfc-editor.org/rfc/rfc6272</a>&gt;</span>. </dd>
 <dd class="break"></dd>
-</dl>
-</section>
-<section id="section-8.2">
-        <h3 id="name-informative-references">
-<a href="#section-8.2" class="section-number selfRef">8.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
-        </h3>
-<dl class="references">
-<dt id="FED-ENERGY-MGMT">[FED-ENERGY-MGMT]</dt>
-        <dd>
-<span class="refTitle">"Using Distributed Energy Resources, A how-to Guide for Federal Facility Managers."</span>, <span>n.d.</span>, <span>&lt;<a href="https://www.nrel.gov/docs/fy02osti/31570.pdf">https://www.nrel.gov/docs/fy02osti/31570.pdf</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="I-D.6lo-plc">[I-D.6lo-plc]</dt>
-        <dd>
-<span class="refTitle">"*** BROKEN REFERENCE ***"</span>. </dd>
-<dd class="break"></dd>
-<dt id="IEC-SPEC">[IEC-SPEC]</dt>
-        <dd>
-<span class="refAuthor">Baigent, D.</span> and <span class="refAuthor">M. Adamiak</span>, <span class="refTitle">"IEC 61850 Communication Networks and Systems In Substations: An Overview for Users"</span>, <time datetime="2009" class="refDate">2009</time>, <span>&lt;<a href="https://www.gegridsolutions.com/multilin/journals/issues/spring09/iec61850.pdf">https://www.gegridsolutions.com/multilin/journals/issues/spring09/iec61850.pdf</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="POWER-SUBS">[POWER-SUBS]</dt>
-        <dd>
-<span class="refAuthor">McDonald, J. D.</span>, <span class="refTitle">"3rd Edition, Electric Power Substations Engineering"</span>, <time datetime="2012" class="refDate">2012</time>. </dd>
-<dd class="break"></dd>
 <dt id="RT-MSGS">[RT-MSGS]</dt>
-        <dd>
-<span class="refTitle">"*** BROKEN REFERENCE ***"</span>. </dd>
-<dd class="break"></dd>
-<dt id="SMV-ATTACKS">[SMV-ATTACKS]</dt>
-        <dd>
-<span class="refTitle">"*** BROKEN REFERENCE ***"</span>. </dd>
-<dd class="break"></dd>
-<dt id="SYNC">[SYNC]</dt>
       <dd>
 <span class="refTitle">"*** BROKEN REFERENCE ***"</span>. </dd>
 <dd class="break"></dd>
+<dt id="SMV-ATTACKS">[SMV-ATTACKS]</dt>
+      <dd>
+<span class="refTitle">"*** BROKEN REFERENCE ***"</span>. </dd>
+<dd class="break"></dd>
+<dt id="SYNC">[SYNC]</dt>
+    <dd>
+<span class="refTitle">"*** BROKEN REFERENCE ***"</span>. </dd>
+<dd class="break"></dd>
 </dl>
-</section>
 </section>
 <div id="acknowledgments">
 <section id="appendix-A">
