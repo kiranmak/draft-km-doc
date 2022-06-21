@@ -4,8 +4,8 @@
 
 Internet Area Working Group                                 K. Makhijani
 Internet-Draft                                                 Futurewei
-Intended status: Informational                               19 May 2022
-Expires: 20 November 2022
+Intended status: Informational                              24 June 2022
+Expires: 26 December 2022
 
 
                   Networks for Operating Energy grids
@@ -13,7 +13,15 @@ Expires: 20 November 2022
 
 Abstract
 
-   TODO Abstract
+   This document describes the Operations and Control Network (OCN)
+   scenario emerging from the modern or smart energy grid applications.
+   These scenarios are derived to highlighting different behavior than
+   the traditional networking leading to new requirements.  Traditional
+   energy grids been a one way power distribution system, manged
+   centrally.  However, new sources of power generation and provisioning
+   for efficient use of energy, requires 2-way communication between
+   different the consuming and consuming entities in the power grid
+   networks.
 
 About This Document
 
@@ -46,7 +54,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 20 November 2022.
+   This Internet-Draft will expire on 26 December 2022.
 
 Copyright Notice
 
@@ -63,42 +71,470 @@ Table of Contents
 
    1.  Introduction
    2.  Conventions and Definitions
-   3.  Security Considerations
-   4.  IANA Considerations
-   5.  Normative References
+   3.  Background
+     3.1.  High Level Overview
+     3.2.  Communications in Power grid
+       3.2.1.  Subsystem Automation System (SAS)
+       3.2.2.  Protocols
+       3.2.3.  Addresses
+       3.2.4.  Message types
+     3.3.  Other work
+   4.  New Power grid Decentralization Scenarios
+     4.1.  Connecting Distributed Energy Resources
+       4.1.1.  Requirements and Challenges
+     4.2.  Substation Automation System
+       4.2.1.  Message latency
+   5.  Requirements
+     5.1.  Decentralization in Energy Grids
+     5.2.  Smart Energy Grids
+       5.2.1.  Key Performance Parameters
+       5.2.2.  Requirements
+   6.  Security Considerations
+   7.  IANA Considerations
+   8.  References
+     8.1.  Normative References
+     8.2.  Informative References
    Acknowledgments
    Author's Address
 
 1.  Introduction
 
-   TODO Introduction
+   The traditional power grids are a single-soruce centralized power
+   distribution network.  Power grid infrastructure involves a large
+   power plant generator and that power to be distributed over large
+   geographical areas using transmission lines to the utility customer.
+
+   Essentially, the energy grid network is a large scale control system
+   which is evolving with a goal of efficiently utilizing every unit of
+   power generated.
+
+   Although demand for energy continues to grow, it is difficult to
+   setup and expand energy grids and transmission lines.  However,
+   several cases arise when power stations will need to operate at full
+   capacity or re-distribute energy load across different customer side
+   substations.  Different types of surge in power consumption must be
+   done dynamically with the help of automated controls and tools.
+
+   Secondly, infrastructure continues to evolve to connect new sources
+   of energy into the grid.  This also requires fine-grained control of
+   switching power-sources based on pricing and on-demand parameters.
+
+   Electrical grids and substations present with difficult operating
+   conditions for plant operators due to hazards related to high
+   voltages and current exposure (???) when faults occur.  This document
+   provides role of communication systems to support automation and
+   remote operation scenarios in the electric power grids to facilitate
+   above mentioned challenges.
+
+   This document provides a background of the power-grid architecture
+   and discusses new scenarios requiring closer integration with the
+   communication technologies.
 
 2.  Conventions and Definitions
 
-   The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
-   "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
-   "OPTIONAL" in this document are to be interpreted as described in
-   BCP 14 [RFC2119] [RFC8174] when, and only when, they appear in all
-   capitals, as shown here.
+   Protective Relays  are used in the power grids to detect defects and
+      abnormal conditions in lines or apparatus to initiate appropriate
+      control circuit action.
 
-3.  Security Considerations
+   Intelligent Electronic Devices (IEDs)  are microprocessor-based
+      devices in the power systems that transmit and receive data or
+      control external device such as microprocessor-based voltage
+      regulators, protection relays, circuit breaker controllers, etc.
+      that can communicate with other devices in the network.
 
-   TODO Security
+   Distributed Energy Resources (DERs)  Distributed energy resources are
+      small, modular, energy generation and storage technologies that
+      provide electric capacity or energy closer to the customer site.
+      Typically producing less than 10 megawatts (MW) of power.  DER
+      systems may be either connected to the local electric power grid
+      or be stand-alone applications Examples of DER technologies
+      include wind turbines, photovoltaics (PV), fuel cells,
+      microturbines, etc.  [FED-ENERGY-MGMT].  DER involves power
+      electronic interfaces, communications and control devices for
+      efficient operation of multiple components of power management.
 
-4.  IANA Considerations
+   Merging Unit (MU)  is used to convert voltage and current readings
+      from potential and current transformers, respectively, into
+      digital data and publish them as Sampled measured values.
+
+3.  Background
+
+3.1.  High Level Overview
+
+   The centralized power grid systems is a combination of devices and
+   controllers operating at power generation, transmission, distribution
+   substations and customer premises.
+
+                                      residential
+                                        cutomer
+                                          /\
+                                         |  |
+                  transmission           +--+
+                          /  distribution  |
+                         /T\    +--+       |
+     +----+      +---+    |     |  |-------+
+     |    |------|   |----|-----+--+
+     |    |------|   |          +--+
+     +----+      +---+---^------┤  ├-------+
+      bulk              /T\     +--+       |
+      power             /│\     sub-       |
+      generation               station     /\
+                                          /  \
+                                          |  |
+                                          +--+
+                                     industrial
+                                     customer
+
+                     Figure 1: Power grid architecture
+
+   The entire grid relies on traditional OT.  It requires SCADA or
+   similar setup to monitor and control the voltage and power in each
+   substation associated with the transmission, distribution and
+   customer site substations.  Several of these functions are identical
+   focusing on protection and distribution of electric current flowing
+   through.
+
+   Time synchronization [SYNC] is an important aspect of power grids
+   since accurate timing is used to detect when and where malfunctions
+   or disruption in power distribution occurred.  Time synchronized
+   electric signals guarantee that current flowing through lines is in
+   phase (ref and use case??)
+
+   TODO: Add more on limitations.
+
+3.2.  Communications in Power grid
+
+   Communications in electric power systems are at two levels.  >1.
+   Intra-substation communications: To facilitate connectivity and
+   control functions through substation automation.  >2.  Inter-
+   substation communications: To facilitate connectivity for
+   synchronization, load redistribution and topology related functions.
+
+3.2.1.  Subsystem Automation System (SAS)
+
+   The reference design used below is based on IEC 61850 process bus
+   based T1-1 substation automation reference case study [RT-MSGS].
+
+              control and enterprise applications
+             .-.           .-.             .-.
+            (   )         (   )           (   )
+             '-'           '-'             '-'
+              |             |               |
+         |----------LAN--or--WAN--layer------------|
+         |-------------------.-.-------------------|
+                            (   )  Firewall
+                             '-'
+                   +-------------------+     '-----'
+                   |Interconnecting NE |----( SCADA )
+                   +--:------:-------:-+     '-----'
+               /------|      :       |-----\
+              /              :              \
+           =====      :   ===:=    :       ====*
+         +-|   |---|  : +-|   |-+  :  +----|   |---|
+         | =====   |  : | ===== |  :  |    =/===   |
+         |    |    |  : |       |  :  |    /       |
+        +-+  +-+  +-+ :+-+     +-+ :+-+  +-+  +-+ _|
+        +-+  +-+  +-+ :+-+ IEDs+-+ :+-+  +-+  +-+
+         │    │    |  : |       │  : │    |    |
+       :--------------:─-----------:------------:
+       :--------------:------------:------------:
+        (protection & safety equipment - voltage, current
+         transformers, circuit breaker, over-current protection)
+
+          Figure 2: Substation Automation System and Architecture
+
+3.2.2.  Protocols
+
+   The communication requirements are documented in IEC 61850: Part 5
+   standard (since this requires purchase of standard, the reference is
+   not added to the document.  Instead [RT-MSGS] provides an indirect
+   reference is used).
+
+   Power grid systems use different types of messages listed in
+   [RT-MSGS] below.
+
+   *  IEC GOOSE protocol is an event-driven protocol designed to
+      exchange messages between the IEDs over Ethernet.  It supports
+      periodic and event based messages.  Event-based messages are used
+      for reporting errors and are sent in bursts to compensate for any
+      packet loss (since the protocol is publisher/subscriber based).
+      The Figure 3 show all the protocol interfaces.
+
+   *  Sampled Measured values (SV) protocol is also over Ethernet to
+      connect the other side of IEDs interact over the process bus to
+      collect sampled values (SV) from the devices.  The SV interfaces
+      between the IEDs and MUs.  It is used to carry digital values of
+      voltage and current and used for control and monitoring
+      applications.  SMV messages are broadcast messages and an svID
+      field is utilized to distinguish and classify them.
+
+   *  MMS protocol is an application client/server protocol designed for
+      interoperability between different device manufacturers.
+
+   One of the problem with Ethernet based payloads on process and
+   station bus is that the Ethernet is a broadcast medium and without
+   appropriate address validation (or lack of it) can lead to substation
+   susceptible to flooding attacks. see [SMV-ATTACKS] for more
+   vulnerabilities in SMV and GOOSE protocols.
+
+      +------+          +---+
+      |SCADA |  MMS     |RTU|
+      |      |--------->|   |
+      +------+          +---+
+                         |
+                         |Station Bus (MMS TCP/IP)
+            --+-------+---+-------+
+              +<=========>|       |
+              | GOOSE   +--+    +-+-+
+            +---+       |  |    |   | (IEDs)
+            |   |       +-++    +-+-+
+            +-+-+         |       |
+              |           |       |
+           ---+--+----+---+-------+---
+                 |    |  Process Bus (SV)
+                 |    --          |
+             .---+    .|.    .-.  |
+            ( MU)    (MU )  (MU --+
+             '-'      '-'    '-'
+
+                  Figure 3: Protocols used in Energy Grid
+
+3.2.3.  Addresses
+
+   All the protocols use Ethernet addresses for lower layer interface
+   (MUs) and IP addresses for IEDs and above.
+
+3.2.4.  Message types
+
+   see table below.
+
+3.3.  Other work
+
+   Within the IETF technologies, some work on smart-grid is being done.
+   [RFC6272] provides guidance for smart-grids to use existing IETF
+   protocols.
+
+   [I-D.6lo-plc] only relates to metering infrastructure and disucsses
+   how IPv6 packets are transported over constrained PLC networks, such
+   as ITU-T G.9903, IEEE 1901.1 and IEEE 1901.2.
+
+4.  New Power grid Decentralization Scenarios
+
+   This section describes a broad view of use cases requiring different
+   perspective related to the communication aspects of power-grid
+   systems.
+
+   Smart grid innovation is leading to use of communication and digital
+   technologies to perform different power distribution functions.  We
+   cover 3 scenarios:
+
+      1.  Connecting Distributed Energy Resources - decentralized energy
+          distribution management of power and load distribution/
+          balancing from different sources to improve overall
+          performance of the grid.
+
+      2.  Substation Automation Systems - Remote operation and and
+          monitoring of SAS to reduce delays due to technician having to
+          fix problems on-site. also to improve the safety of the
+          technicians.
+
+      3.  Advance metering infrastructure to address customer side peak
+          demands and metering based on different sources of energy.
+
+4.1.  Connecting Distributed Energy Resources
+
+   Distributed energy resources (DERs) enable mechanisms to store
+   locally generated energy for example from wind, solar, micro-turbines
+   etc.  They are smaller, cleaner and cheaper sources of energy as
+   compared to bulk power generation.
+
+   The DER mechanisms require precise control and monitoring procedures.
+
+   *  DER systems improve reliability when incidence such as service
+      interruption happens from main power source.
+
+   *  if DER energy source is renewable it reduces cost of decreasing
+      consumption from main supplier.
+
+4.1.1.  Requirements and Challenges
+
+   The communication between DER to end-units (inverters, batteries) is
+   of type operations and control functions. i.e. a controlling entity
+   will control DER in local geographies and end-units on customer
+   premises.  It executes commands that will cause switching of power-
+   source in either direction and regularly read sensors.
+
+   Connecting different types of DERs to the grids leads to a large-
+   scale single deplyoment.  Some of the challenges arising due to this
+   are:
+
+   *  A partial knowledge about any energy resource or requirement may
+      result in the instability of the voltage profile.
+
+   *  There is a need to redesign systems for 2 way communications in
+      which different DERs will let smrt-grid operator know about
+      available power and its demand requirement
+
+4.2.  Substation Automation System
+
+   The Substation automation system is responsible for control,
+   monitoring and safety of transmission equipment in substations.  It
+   uses well-known industry control technologies like SCADA system and
+   process bus to carry out sampled measurements of various operational
+   parameters such as voltage, current, etc.  It also sends command to
+   several types of switchgear equipment such as transformers, voltage
+   equipment, and circuit breakers over communication network.
+
+   Substation automation system uses process buses to control and
+   monitor switchgear equipment to read voltage and frequency values.
+
+   The core functions of substations are:
+
+      -  Protection of switch gear against transmitted frequency,
+         voltage fluctuations and changes in environment.  This requires
+         synchronizing sampled measurements from different points in the
+         substation.
+
+      -  Interlocking
+
+      -  Automatic switching sequences
+
+   The messages mentioned above are critical to the operations of the
+   grid.  They require guarantee of in-time and ordered deliveries and
+   high reliability.
+
+4.2.1.  Message latency
+
+   Messages for substation communication have been identified based on
+   their criticality in IEC 61850.  The messages types are mapped
+   according to their communication performance requirements shown in
+   Table 1 along with their types.  The network is hybrid, it transmits
+   critical and real-time messsages directly over the link layer.  For
+   example, type1, 1A are time-critical and are carried over the
+   Ethernet directly.  The 'type 2' are medium speed message (type 2)
+   and several others are non-critical (source: [RT-MSGS]).
+
+      +==================+=============================+============+
+      | Message Type     | Example Application         | Time       |
+      |                  |                             | Constraint |
+      +==================+=============================+============+
+      | 1A--Fast         | Circuit breaker commands    | <=3 ms     |
+      | messages, trip   | and states (GOOSE)          |            |
+      +------------------+-----------------------------+------------+
+      | 1B--Fast         | same as above               | <=20 ms    |
+      | messages, other  |                             |            |
+      +------------------+-----------------------------+------------+
+      | 2--Medium speed  | RMS values calculated       | <=100 ms   |
+      | messages         | from type 4 messages        |            |
+      +------------------+-----------------------------+------------+
+      | 3--Low speed     | Alarms, non-electrical      | <=500 ms   |
+      | messages         | configurations              |            |
+      +------------------+-----------------------------+------------+
+      | 4--Raw data      | Digital representation      | <=3 ms     |
+      | messages         | electrical measurement (SV) |            |
+      +------------------+-----------------------------+------------+
+      | 5--File transfer | Files of data for           | <=1000 ms  |
+      | functions        | recording settings          |            |
+      +------------------+-----------------------------+------------+
+      | 6--Time          | synchronization             | none       |
+      | synchronization  |                             |            |
+      | messages         |                             |            |
+      +------------------+-----------------------------+------------+
+
+       Table 1: Time constraints for IEC 61850 process bus messages.
+
+5.  Requirements
+
+   In the current design, potential limitations that prevent complete
+   automation of substations maybe observed as:
+
+      -  The network needs to maintain several states from a variety of
+         protocols and perform conversion from SVM to GOOSE to MMS.
+         There are opportunities to simplify and converge MMS and GOOSE
+         protocols into single network layer interface.
+
+      -  Moreover, SVM is design to broadcast alarm messages repeatedly
+         (or as a burst) to compensate for the potential packet loss.  A
+         robust and reliable design of network layer protocol can
+         eliminate flooding.
+
+      -  Remote operations in substations are pivotal to workers' safety
+         especially in case of accidents and inclement weather
+         conditions.  In order to make remote operations feasible, above
+         mentioned messages need support over a wide-area networks.
+
+   To summarize, automation requires leveraging IT-grade software and
+   services.  Then allowing those services to directly control and
+   monitor the substations.
+
+5.1.  Decentralization in Energy Grids
+
+   TODO??
+
+5.2.  Smart Energy Grids
+
+   Support for smart-grids is necessary to interconnect different
+   sources of energy, have a system level view of where peak-demand or
+   consumption is changing, where faults are occurring and how energy
+   can be used efficiently overall.
+
+   This requires finer granularity of monitoring, control, and data
+   acquisition of the electricity network which will extend down to the
+   distribution pole-top transformer and perhaps even to individual
+   customers, either through the substation communication network, by
+   means of a separate feeder communication network (chapter 22,
+   [POWER-SUBS]).
+
+5.2.1.  Key Performance Parameters
+
+   - Metering - Wide area monitoring (using synchrophasors) -- use of
+   time synchronization for phase matching in distribution network. -
+   Power conditioning - Electricity storage
+
+5.2.2.  Requirements
+
+6.  Security Considerations
+
+   TODO
+
+7.  IANA Considerations
 
    This document has no IANA actions.
 
-5.  Normative References
+8.  References
 
-   [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
-              Requirement Levels", BCP 14, RFC 2119,
-              DOI 10.17487/RFC2119, March 1997,
-              <https://www.rfc-editor.org/rfc/rfc2119>.
+8.1.  Normative References
 
-   [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
-              2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
-              May 2017, <https://www.rfc-editor.org/rfc/rfc8174>.
+   [RFC6272]  Baker, F. and D. Meyer, "Internet Protocols for the Smart
+              Grid", RFC 6272, DOI 10.17487/RFC6272, June 2011,
+              <https://www.rfc-editor.org/rfc/rfc6272>.
+
+8.2.  Informative References
+
+   [FED-ENERGY-MGMT]
+              "Using Distributed Energy Resources, A how-to Guide for
+              Federal Facility Managers.", n.d.,
+              <https://www.nrel.gov/docs/fy02osti/31570.pdf>.
+
+   [I-D.6lo-plc]
+              "*** BROKEN REFERENCE ***".
+
+   [IEC-SPEC] Baigent, D. and M. Adamiak, "IEC 61850 Communication
+              Networks and Systems In Substations: An Overview for
+              Users", 2009,
+              <https://www.gegridsolutions.com/multilin/journals/issues/
+              spring09/iec61850.pdf>.
+
+   [POWER-SUBS]
+              McDonald, J. D., "3rd Edition, Electric Power Substations
+              Engineering", 2012.
+
+   [RT-MSGS]  "*** BROKEN REFERENCE ***".
+
+   [SMV-ATTACKS]
+              "*** BROKEN REFERENCE ***".
+
+   [SYNC]     "*** BROKEN REFERENCE ***".
 
 Acknowledgments
 
