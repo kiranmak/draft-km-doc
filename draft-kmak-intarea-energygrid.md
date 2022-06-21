@@ -59,42 +59,52 @@ informative:
 
 --- abstract
 
-This document describes the Operations and Control Network (OCN) scenario emerging from the modern or smart energy grid applications. These scenarios are derived to highlighting different behavior than the traditional networking leading to new requirements.
-Traditional energy grids been a one way power distribution system, manged centrally. However, new sources of power generation and provisioning for efficient use of energy, requires 2-way communication between different the consuming and consuming entities in the power grid networks.
+This document describes communications specific scenarios emerging from the advances in the energy grid applications. These scenarios are derived to highlight that their behavior differs from the traditional best-effort networks and inter-networking paradigms, thereby leading to new requirements.
+Traditional energy grids have been a one way power distribution system, managed centrally. However, new sources of power generation and provisioning for efficient use of energy, requires two-way communication and coordination between different power generating and consuming entities in the power grid networks.
 
 
 --- middle
 
 # Introduction
 
-The traditional power grids are a single-soruce centralized power distribution network. Power grid infrastructure involves a large power plant
-generator and that power to be distributed over large geographical areas using transmission lines to the utility customer.
+The traditional power grids are a single-source centralized power distribution network. Power grid infrastructure involves a large power plant
+generator and from there on that power to be distributed over large geographical areas using transmission lines to the utility customer.
 
-Essentially, the energy grid network is a
-large scale control system which is evolving with a goal of efficiently utilizing every unit of
+Essentially, the energy grid network is a large scale control system
+which is evolving with a goal of efficiently utilizing every unit of
 power generated.
 
-Although demand for energy continues to grow, it is difficult to setup and expand
-energy grids and transmission lines. However, several cases arise when power stations will need to
-operate at full capacity or re-distribute energy load across different customer side substations. Different types of surge in power consumption must be done
-dynamically with the help of automated controls and tools.
+The demand for energy will continue to grow; at the same time, it is
+difficult to expand resources in the energy grids and the transmission lines.
+There is always a possibility that when the demand for the energy goes very high, the power station will have to operate at full capacity or will
+re-distribute energy load from one customer-side substation to the other. Such
+power surges are not always predictable, therefore, the consumption must be
+done dynamically on-demand with the help of automated controls and tools.
 
-Secondly, infrastructure continues to evolve to connect new sources of energy into the grid. This also requires fine-grained control of switching power-sources based on pricing and on-demand parameters.
+Secondly, the energy grid infrastructure continues to evolve to connect
+new sources of energy into the grid. This also requires finer granularity
+of control to switch power-sources at the right time and without disruption based on pricing and on-demand parameters. Such type of actions should not have adverse effect on the stability of the networks.
 
-Electrical grids and substations present with difficult operating conditions for plant operators due to hazards related to high voltages and current exposure (???) when faults occur.
-This document provides role of communication systems to support automation and remote operation scenarios in the electric power grids to facilitate above mentioned challenges.
+Electrical grids and substations present difficult operating conditions
+for plant operators due to the hazards related to high voltages and current
+faults occur, requiring for safety of operations.
 
-This document provides a background of the power-grid architecture and discusses new scenarios requiring closer integration with the communication technologies.
+With the above mentioned challenges, this document provides role of
+communication systems to support automation and remote operation scenarios
+in the electric power grids.
+
+This document also provides a background of the power-grid architecture to add
+more context to the discussions on scenarios requiring closer integration with the communication technologies.
 
 # Conventions and Definitions
 
-Protective Relays
+Protective Relays:
  :  are used in the power grids to detect defects and abnormal conditions in lines or apparatus to initiate appropriate control circuit action.
 
-Intelligent Electronic Devices (IEDs)
+Intelligent Electronic Devices (IEDs):
  : are microprocessor-based devices in the power systems that transmit and receive data or control external device such as microprocessor-based voltage regulators, protection relays, circuit breaker controllers, etc. that can communicate with other devices in the network.
 
-Distributed Energy Resources (DERs)
+Distributed Energy Resources (DERs):
  : Distributed energy resources are small, modular, energy generation
    and storage technologies that provide electric capacity or energy
    closer to the customer site. Typically producing less than 10 megawatts
@@ -106,9 +116,13 @@ Distributed Energy Resources (DERs)
    and control devices for efficient operation of multiple components
    of power management.
 
-Merging Unit (MU)
+Merging Unit (MU):
 : is used to convert voltage and current readings
 from potential and current transformers, respectively, into digital data and publish them as Sampled measured values.
+
+- GOOSE: Generic Object Oriented Substation Events
+- MMS: Manufacturing Message Specification
+- SMV: Sampled Measurement Value
 
 # Background
 
@@ -123,7 +137,7 @@ The centralized power grid systems is a combination of devices and controllers o
                                        /\
                                       |  |
                transmission           +--+
-                       /  distribution  |
+                       /\  distribution |
                       /T\    +--+       |
   +----+      +---+    |     |  |-------+
   |    |------|   |----|-----+--+
@@ -141,7 +155,12 @@ The centralized power grid systems is a combination of devices and controllers o
 ~~~
 {: #grid title="Power grid architecture"}
 
-The entire grid relies on traditional OT. It requires SCADA or similar setup to monitor and control the voltage and power in each substation associated with the transmission, distribution and customer site substations. Several of these functions are identical focusing on protection and distribution of electric current flowing through.
+The entire grid relies on traditional operational technology (OT) functions and
+communications. It requires SCADA or similar setup to monitor and control
+the voltage and power in each substation associated with the transmission,
+distribution and customer sites . Several of these functions are
+identical focusing on the protection and distribution of electric current
+flowing through.
 
 Time synchronization {{SYNC}} is an important aspect of power grids since accurate timing is used to detect when and where malfunctions or disruption in power distribution occurred. Time synchronized electric signals guarantee that current flowing through lines is in phase (ref and use case??)
 
@@ -151,14 +170,14 @@ TODO: Add more on limitations.
 
 Communications in electric power systems are at two levels.
     >1. Intra-substation communications: To facilitate connectivity
-        and control functions through substation automation.
+        and control functions relating to substation automation.
     >2. Inter-substation communications: To facilitate connectivity
-        for synchronization, load redistribution and topology
+        for phase synchronization, load (re-)distribution and topology
         related functions.
 
 ### Subsystem Automation System (SAS)
 
-The reference design used below is based on IEC 61850 process bus based T1-1 substation automation reference case study {{RT-MSGS}}.
+The reference design used below in {{sas}} is based on IEC 61850 process bus. It is part of the T1-1 substation automation reference case study {{RT-MSGS}}.
 
 ~~~
            control and enterprise applications
@@ -192,27 +211,36 @@ The reference design used below is based on IEC 61850 process bus based T1-1 sub
 
 ### Protocols
 
-The communication requirements are documented in IEC 61850: Part 5 standard (since this requires purchase of standard, the reference is not added to the document. Instead {{RT-MSGS}} provides an indirect reference is used).
+The communication requirements are documented in IEC 61850: Part 5 standard and an overview of the communication architecture and messages are described in the {{IEC-SPEC}} paper.
 
-Power grid systems use different types of messages listed in {{RT-MSGS}} below.
+>Note: since this requires purchase of the copy of the standard, reference
+ to this document is not added. Instead {{IEC-SPEC}} and {{RT-MSGS}} provide
+ indirect references with sufficient context.
 
- * IEC GOOSE protocol is an event-driven protocol designed to exchange messages between the IEDs
-   over Ethernet. It supports periodic and event based messages.
+Power grid systems use different types of messages {{RT-MSGS}} as below.
+
+ * IEC GOOSE is an event-driven protocol designed to exchange messages
+   between the IEDs over the Ethernet. It supports both periodic and event
+   based messages.
    Event-based messages are used for reporting errors and are sent in
    bursts to compensate for any packet loss (since the protocol is
-   publisher/subscriber based). The {{grid-proto}} show all the protocol interfaces.
+   publisher/subscriber based). The {{grid-proto}} show all the
+   protocol interfaces.
 
-*  Sampled Measured values (SV) protocol is also over Ethernet to connect
-   the other side of IEDs interact over the process bus to collect sampled values (SV) from the devices. The SV interfaces between the IEDs and MUs.
-   It is used to carry digital values of voltage and current and used
-   for control and monitoring applications. SMV messages are
-   broadcast messages and an svID field is utilized to distinguish and classify them.
+*  Sampled Measured Values (SV) protocol is also over Ethernet to connect
+   to the other side of IEDs to interact over the process bus.
+   Using this protocols  collect sampled values (SV) from the devices.
+   The SV interfaces between the IEDs and MUs.
+   An MU will convert analog readings to digital, then use SMV format to
+   carry digital values of voltage and current for control and monitoring
+   applications. SMV messages are broadcast messages and an svID
+   field is utilized to distinguish and classify them.
 
 * MMS protocol is an application client/server protocol designed for
   interoperability between different device manufacturers.
 
-One of the problem with Ethernet based payloads on process and station bus
-is that the Ethernet is a broadcast medium and without appropriate address validation (or lack of it) can lead to substation susceptible to flooding attacks. see {{SMV-ATTACKS}} for more vulnerabilities in SMV and GOOSE protocols.
+One of the concerns with the Ethernet based payloads on process and station bus
+is that the Ethernet is a broadcast medium and without appropriate address validation (or lack of it) substation may be susceptible to flooding attacks. See {{SMV-ATTACKS}} for more vulnerabilities in SMV and GOOSE protocols.
 
 ~~~~
 
@@ -247,27 +275,38 @@ see table below.
 
 ## Other work
 
+>Note: This section should be moved.
+
 Within the IETF technologies, some work on smart-grid is being done.
-{{!RFC6272}} provides guidance for smart-grids to use existing IETF protocols.
+{{?RFC6272}} provides guidance for smart-grids to use existing IETF protocols.
 
-{{?I-D.6lo-plc}} only relates to metering infrastructure and disucsses how IPv6 packets are transported over constrained PLC networks, such as ITU-T G.9903, IEEE 1901.1 and IEEE 1901.2.
+Forwarding IPv6 packets over PLC interfaces is described in
+{{?I-D.ietf-6lo-plc}}. It only relates to advanced metering infrastructure and disucsses how IPv6 packets are transported over constrained PLC networks, such as ITU-T G.9903, IEEE 1901.1 and IEEE 1901.2.
 
-# New Power grid Decentralization Scenarios
+There are  additional functions and characteristics necessary as well such as
+those related to latency guarantees, resiliency and reliability.
 
-This section describes a broad view of use cases requiring different perspective related to the communication aspects of power-grid systems.
+# New Power grid Scenarios
 
+This section describes a broad view of the use cases requiring
+different perspective related to the communication in power-grid systems.
 
-Smart grid innovation is leading to use of communication and digital
-technologies to perform different power distribution functions.
+Smart grids are specifically defined as technologies that rely on
+connectivity to leverage and digital technologies to perform different
+power distribution functions.
+
 We cover 3 scenarios:
 
 
->1. Connecting Distributed Energy Resources - decentralized energy distribution management of power and load distribution/balancing from different sources to improve overall performance of the grid.
->1. Substation Automation Systems - Remote operation and
-and monitoring of SAS to reduce delays due to technician having to fix
-problems on-site. also to improve the safety of the technicians.
->1. Advance metering infrastructure to address customer side peak demands
-and metering based on different sources of energy.
+>1. Coordination of Distributed Energy Resources - decentralized energy
+    distribution management of power and load distribution/balancing from
+    different sources to improve overall performance of the grid.
+>1. Substation Automation Systems - Remote operation and monitoring of
+    substations to reduce delays due to technician having to fix
+    problems on-site. Also to improve the safety of the technicians.
+>1. Advance Metering Infrastructure  - to address customer side peak demands
+    and metering based on different sources of energy.
+
 
 ## Connecting Distributed Energy Resources
 
@@ -283,20 +322,18 @@ The DER mechanisms require precise control and monitoring procedures.
   * if DER energy source is renewable it reduces cost of
     decreasing consumption from main supplier.
 
+IEEE-1547-2018 describes connection and inter-operability interface between
+bulk power utility and a DER. It is a technology agnostic specification,
+however, mandates a communication interface to exchange operations, capabilities and requirements between EPS and DER.
+
+TODO: add examples.
 
 
 ### Requirements and Challenges
 
-The communication between DER to end-units (inverters, batteries) is of type
-operations and control functions. i.e. a controlling entity will control
-DER in local geographies and end-units on customer premises.
-It executes commands that will cause switching of power-source in
-either direction and regularly read sensors.
+Connecting different types of DERs to the grids leads to a large-scale single deplyoment requiring explicit resource co-ordination.
 
-Connecting different types of DERs to the grids leads to a large-scale single deplyoment. Some of the challenges arising due to this are:
-
-- A partial knowledge about any energy resource or requirement may result in the instability of the voltage profile.
-- There is a need to redesign systems for 2 way communications in which different DERs will let smrt-grid operator know about available power and its demand requirement
+TODO:
 
 
 ## Substation Automation System
@@ -366,12 +403,15 @@ TODO??
 
 ## Smart Energy Grids
 
-Support for smart-grids is necessary to interconnect different sources of
+Smart-grids are a network of all the components in production and consumption
+of powers. It is necessary to interconnect different sources of
 energy, have a system level view of where peak-demand or consumption
 is changing, where faults are occurring and how energy can be used efficiently overall.
 
-This requires finer granularity of monitoring, control, and data acquisition of the electricity network which will extend down to the
-distribution pole-top transformer and perhaps even to individual customers, either through the substation communication network, by means of a
+This requires finer granularity of monitoring, control, and data
+acquisition of the electricity network which will extend down to the
+distribution pole-top transformer. It can also extend to individual customers,
+either through the substation communication network, by means of a
 separate feeder communication network (chapter 22, {{POWER-SUBS}}).
 
 
@@ -385,6 +425,7 @@ separate feeder communication network (chapter 22, {{POWER-SUBS}}).
 
 ### Requirements
 
+TODO
 
 # Security Considerations
 
