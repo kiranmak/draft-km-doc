@@ -250,7 +250,7 @@ see table below.
 Within the IETF technologies, some work on smart-grid is being done.
 {{!RFC6272}} provides guidance for smart-grids to use existing IETF protocols.
 
-{{?I-D.ietf-6lo-plc}} only relates to metering infrastructure and disucsses how IPv6 packets are transported over constrained PLC networks, such as ITU-T G.9903, IEEE 1901.1 and IEEE 1901.2.
+{{?I-D.6lo-plc}} only relates to metering infrastructure and disucsses how IPv6 packets are transported over constrained PLC networks, such as ITU-T G.9903, IEEE 1901.1 and IEEE 1901.2.
 
 # New Power grid Decentralization Scenarios
 
