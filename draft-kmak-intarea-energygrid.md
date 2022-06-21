@@ -6,7 +6,7 @@ category: info
 docname: draft-kmak-intarea-energygrid-latest
 submissiontype: independent
 number:
-date: 2022-06-14
+date: 2022-06-24
 consensus: false
 v: 3
 area: "Internet"
@@ -158,7 +158,7 @@ Communications in electric power systems are at two levels.
 
 ### Subsystem Automation System (SAS)
 
-Independent operations in a substation are described as Substation automation systems {{}}. The reference design used below is based on IEC 61850 process bus based T1-1 substation automation reference case study {{RT-MSGS}}.
+The reference design used below is based on IEC 61850 process bus based T1-1 substation automation reference case study {{RT-MSGS}}.
 
 ~~~
            control and enterprise applications
@@ -250,7 +250,7 @@ see table below.
 Within the IETF technologies, some work on smart-grid is being done.
 {{!RFC6272}} provides guidance for smart-grids to use existing IETF protocols.
 
-{{I-D.ietf-6lo-plc}} only relates to metering infrastructure and disucsses how IPv6 packets are transported over constrained PLC networks, such as ITU-T G.9903, IEEE 1901.1 and IEEE 1901.2.
+{{?I-D.ietf-6lo-plc}} only relates to metering infrastructure and disucsses how IPv6 packets are transported over constrained PLC networks, such as ITU-T G.9903, IEEE 1901.1 and IEEE 1901.2.
 
 # New Power grid Decentralization Scenarios
 
